@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Vavatech.WAPI.Service.Handlers;
 
 namespace Vavatech.WAPI.Service
 {
@@ -19,6 +20,8 @@ namespace Vavatech.WAPI.Service
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.MessageHandlers.Add(new TraceMessageHandler());
         }
     }
 }
