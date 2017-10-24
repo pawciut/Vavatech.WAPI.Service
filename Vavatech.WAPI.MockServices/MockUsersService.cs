@@ -25,6 +25,22 @@ namespace Vavatech.WAPI.MockServices
 			//..
 			
 			return items.SingleOrDefault(u=>u.Pesel == pesel);
-		}
+        }
+
+        public IList<User> Get(UserSearchCriteria criteria)
+        {
+            var query = items.AsQueryable();
+
+            if (!string.IsNullOrEmpty(criteria.FirstName))
+                query = query.Where(u => u.FirstName == criteria.FirstName);
+
+            if (!string.IsNullOrEmpty(criteria.LastName))
+                query = query.Where(u => u.LastName == criteria.LastName);
+
+            if (!string.IsNullOrEmpty(criteria.Pesel))
+                query = query.Where(u => u.Pesel == criteria.Pesel);
+
+            return query.ToList();
+        }
     }
 }

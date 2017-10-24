@@ -9,7 +9,7 @@ using Vavatech.WAPI.Services;
 
 namespace Vavatech.WAPI.Service.Controllers
 {
-		[RoutePrefix("api/users")]
+    [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
         private readonly IUsersService userService;
@@ -24,12 +24,13 @@ namespace Vavatech.WAPI.Service.Controllers
             this.userService = usersService;
         }
 
-        public IHttpActionResult Get()
-        {
-            return Ok(userService.Get());
-        }
+        //public IHttpActionResult Get()
+        //{
+        //    return Ok(userService.Get());
+        //}
 
         [Route("{id:int}")]
+        [HttpGet]
         public IHttpActionResult Get(int id)
         {
             var user = userService.Get(id);
@@ -37,11 +38,9 @@ namespace Vavatech.WAPI.Service.Controllers
                 return NotFound();
             return Ok(user);
         }
-		
-		
-
+        
         [Route(@"{pesel:regex(^\d{11}$)}")]
-		[HttpGet]
+        [HttpGet]
         public IHttpActionResult GetByPesel(string pesel)
         {
             var user = userService.GetByPesel(pesel);
@@ -50,13 +49,16 @@ namespace Vavatech.WAPI.Service.Controllers
             return Ok(user);
         }
 
+        // api/users?firstname=Marcin&lastname=Sulecki
         [HttpGet]
         public IHttpActionResult Get([FromUri] UserSearchCriteria criteria)
         {
-            return Ok();
+            var user = userService.Get(criteria);
+            if (user == null)
+                return NotFound();
+            return Ok(user);
         }
 
-        // api/users?firstname=Marcin&lastname=Sulecki
         public IHttpActionResult Post(User user)
         {
             userService.Add(user);

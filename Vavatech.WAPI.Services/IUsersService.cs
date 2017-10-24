@@ -8,5 +8,7 @@ namespace Vavatech.WAPI.Services
     public interface IUsersService: IBaseService<User>
 	{
         User GetByPesel(string pesel);
-	}
+
+        IList<User> Get(UserSearchCriteria criteria);
+    }
 }
