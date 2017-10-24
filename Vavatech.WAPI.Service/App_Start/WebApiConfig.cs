@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Vavatech.WAPI.Service.Formatters;
 using Vavatech.WAPI.Service.Handlers;
 
 namespace Vavatech.WAPI.Service
@@ -22,7 +23,9 @@ namespace Vavatech.WAPI.Service
             );
 
             config.MessageHandlers.Add(new TraceMessageHandler());
-            config.MessageHandlers.Add(new SecretKeyHandler());
+            //config.MessageHandlers.Add(new SecretKeyHandler());
+
+            config.Formatters.Add(new QrCodeFormatter());
         }
     }
 }
