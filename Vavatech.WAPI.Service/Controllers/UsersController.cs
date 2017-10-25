@@ -61,6 +61,16 @@ namespace Vavatech.WAPI.Service.Controllers
             return Ok(user);
         }
 
+        [Route("{id:int}")]
+        [ExecutionTimeActionFilter]
+        public IHttpActionResult Head(int id)
+        {
+            var user = userService.Get(id);
+            if (user == null)
+                return NotFound();
+            return Ok();
+        }
+
         public IHttpActionResult Post(User user)
         {
             userService.Add(user);
