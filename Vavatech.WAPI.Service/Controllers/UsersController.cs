@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Http;
 using Vavatech.WAPI.MockServices;
 using Vavatech.WAPI.Models;
+using Vavatech.WAPI.Service.ActionFilters;
 using Vavatech.WAPI.Services;
 
 namespace Vavatech.WAPI.Service.Controllers
@@ -31,6 +32,7 @@ namespace Vavatech.WAPI.Service.Controllers
 
         [Route("{id:int}")]
         [HttpGet]
+        [ExecutionTimeActionFilter]
         public IHttpActionResult Get(int id)
         {
             var user = userService.Get(id);

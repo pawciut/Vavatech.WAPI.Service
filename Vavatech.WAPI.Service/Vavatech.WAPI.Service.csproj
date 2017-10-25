@@ -145,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\ExecutionTimeActionFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -185,6 +186,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ExtensionMessageHandler.cs" />
+    <Compile Include="Handlers\FormatMessageHandler.cs" />
     <Compile Include="Handlers\SecretKeyHandler.cs" />
     <Compile Include="Handlers\TraceMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
