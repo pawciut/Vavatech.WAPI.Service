@@ -40,7 +40,7 @@ namespace Vavatech.WAPI.Service.Controllers
         {
             var user = userService.Get(id);
             if (user == null)
-                return NotFound();
+                return this.MyResult();// new CustomActionResult();//NotFound();
             return Ok(user);
         }
         
@@ -50,7 +50,7 @@ namespace Vavatech.WAPI.Service.Controllers
         {
             var user = userService.GetByPesel(pesel);
             if (user == null)
-                return this.MyResult();// new CustomActionResult();//NotFound();
+                return NotFound();
             return Ok(user);
         }
 

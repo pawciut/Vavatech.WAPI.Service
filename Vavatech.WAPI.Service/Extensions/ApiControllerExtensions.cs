@@ -13,5 +13,10 @@ namespace Vavatech.WAPI.Service.Extensions
         {
             return new CustomActionResult();
         }
+
+        public static IHttpActionResult HtmlResult(this ApiController controller, string html)
+        {
+            return new HtmlActionResult(html);
+        }
     }
 }

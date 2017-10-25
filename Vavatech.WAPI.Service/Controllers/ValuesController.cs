@@ -4,11 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Vavatech.WAPI.Service.Extensions;
 
 namespace Vavatech.WAPI.Service.Controllers
 {
     public class ValuesController : ApiController
     {
+        [Route("api/index")]
+        [HttpGet]
+        public IHttpActionResult Index()
+        {
+            return this.HtmlResult("<b>Hello WebAPI!</b>");
+        }
+
         // GET api/values
         public IEnumerable<string> Get()
         {
