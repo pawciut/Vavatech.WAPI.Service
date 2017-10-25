@@ -14,10 +14,10 @@ namespace Vavatech.WAPI.Service.Controllers
     {
         private readonly IStationsService stationService;
 
-        public StationsController()
-            : this(new MockStationsService())
-        {
-        }
+        //public StationsController()
+        //    : this(new MockStationsService())
+        //{
+        //}
 
         public StationsController(IStationsService stationsService)
         {

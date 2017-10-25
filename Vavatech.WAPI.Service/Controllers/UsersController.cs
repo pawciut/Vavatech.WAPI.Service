@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Vavatech.WAPI.MockServices;
@@ -15,10 +16,10 @@ namespace Vavatech.WAPI.Service.Controllers
     {
         private readonly IUsersService userService;
 
-        public UsersController()
-            : this(new MockUsersService())
-        {
-        }
+        //public UsersController()
+        //    : this(new MockUsersService())
+        //{
+        //}
 
         public UsersController(IUsersService usersService)
         {
@@ -62,7 +63,6 @@ namespace Vavatech.WAPI.Service.Controllers
         }
 
         [Route("{id:int}")]
-        [ExecutionTimeActionFilter]
         public IHttpActionResult Head(int id)
         {
             var user = userService.Get(id);
@@ -70,6 +70,19 @@ namespace Vavatech.WAPI.Service.Controllers
                 return NotFound();
             return Ok();
         }
+
+        //można i tak ale lepiej oddzielnie dla przejżystości
+        //[Route("{id:int}")]
+        //[AcceptVerbs("GET","HEAD")]
+        //public IHttpActionResult Head(int id)
+        //{
+        //    var user = userService.Get(id);
+        //    if (user == null)
+        //        return NotFound();
+        //    if (this.Request.Method == HttpMethod.Get)
+        //        return Ok(user);
+        //    return Ok();
+        //}
 
         public IHttpActionResult Post(User user)
         {
